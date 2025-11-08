@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emna Helps Her Grandma Jalila - Better Communication Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://unpkg.com/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="print-styles.css" media="print">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #FFFEF7 0%, #FFF8E1 100%);
+            min-height: 100vh;
+        }
+        
+        /* Print styles for book-like appearance */
+        @media print {
+            body {
+                background: white !important;
+                font-size: 12pt;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .container {
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .story-content {
+                background: white !important;
+                border: none !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                page-break-inside: avoid;
+                margin: 0 !important;
+                padding: 20pt !important;
+            }
+            
+            .story-text {
+                font-size: 12pt !important;
+                line-height: 1.6 !important;
+                color: black !important;
+            }
+            
+            .story-title {
+                font-size: 18pt !important;
+                color: black !important;
+                background: none !important;
+                -webkit-background-clip: initial !important;
+                -webkit-text-fill-color: initial !important;
+                text-align: center;
+                margin-bottom: 20pt;
+            }
+            
+            .vocabulary-word {
+                background: #FFF176 !important;
+                color: black !important;
+                border: 1px solid #333;
+                padding: 2pt 4pt !important;
+                border-radius: 3pt !important;
+            }
+            
+            .nav-button,
+            .progress-bar,
+            .splide__arrows,
+            .splide__pagination,
+            .page-number {
+                display: none !important;
+            }
+            
+            .story-content img {
+                max-width: 100%;
+                height: auto;
+                page-break-inside: avoid;
+            }
+            
+            .question-card,
+            .vocabulary-section {
+                background: #f9f9f9 !important;
+                border-left: 3pt solid #ccc !important;
+                page-break-inside: avoid;
+            }
+            
+            @page {
+                size: A4;
+                margin: 2cm;
+            }
+        }
+        
+        .story-title {
+            font-family: 'Fredoka One', cursive;
+            background: linear-gradient(45deg, #FF8A80, #A5D6A7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .story-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 138, 128, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2E2E2E;
+        }
+        
+        .vocabulary-word {
+            background: linear-gradient(45deg, #FFF176, #FFECB3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: #2E2E2E;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+        
+        .vocabulary-word:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(255, 241, 118, 0.4);
+        }
+        
+        .nav-button {
+            background: linear-gradient(45deg, #A5D6A7, #81C784);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(165, 214, 167, 0.4);
+        }
+        
+        .nav-button:disabled {
+            background: #E0E0E0;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #FF8A80, #A5D6A7);
+            height: 6px;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .question-card {
+            background: linear-gradient(135deg, #E8F5E8, #F1F8E9);
+            border-left: 4px solid #A5D6A7;
+        }
+        
+        .splide__arrow {
+            background: rgba(255, 138, 128, 0.8) !important;
+            border: none !important;
+        }
+        
+        .splide__arrow:hover {
+            background: rgba(255, 138, 128, 1) !important;
+        }
+        
+        .page-number {
+            background: linear-gradient(45deg, #FF8A80, #FFAB91);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header with Progress -->
+        <div class="flex items-center justify-between mb-6">
+            <button onclick="window.location.href='contents.html'" 
+                    class="nav-button text-white px-4 py-2 rounded-full font-semibold shadow-lg">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Contents
+            </button>
+            
+            <div class="flex items-center">
+                <div class="page-number mr-3">1</div>
+                <div class="text-sm text-gray-600">of 9 stories</div>
+            </div>
+            
+            <button onclick="window.location.href='story02.html'" 
+                    class="nav-button text-white px-4 py-2 rounded-full font-semibold shadow-lg">
+                Next
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+            <div class="progress-bar w-[11.11%]"></div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content rounded-3xl p-8 mb-8">
+            <!-- Story Header -->
+            <div class="text-center mb-8">
+                <h1 class="story-title text-3xl md:text-4xl mb-4">Emna Helps Her Grandma Jalila</h1>
+                <div class="theme-badge bg-pink-100 text-pink-800 px-4 py-2 rounded-full font-semibold inline-block">
+                    <i class="fas fa-heart mr-2"></i>
+                    Helping and Caring
+                </div>
+            </div>
+            
+            <!-- Story Layout -->
+            <!-- Story Images with Text Overlay -->
+            <div class="flex justify-center">
+                <div class="splide w-full lg:w-1/3 id="story-images">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide relative mb-4">
+                                <img src="resources/story01-hero.png" alt="Emna helping her grandmother" class="w-full rounded-2xl shadow-lg">
+                                <div class="absolute bottom-0 left-0 right-0 p-6 bg-black bg-opacity-40 rounded-b-2xl">
+                                    <p class="text-white text-lg md:text-xl leading-relaxed">Emna loved spending weekends at her grandma Jalila's house. One Saturday, her grandma Jalila felt <span class="vocabulary-word" title="needing rest">tired</span>. Emna <span class="vocabulary-word" title="saw or realized something">noticed</span> the dirty dishes in the sink and the <span class="vocabulary-word" title="not clean or tidy">messy</span> living room. She decided to clean everything before her grandma Jalila woke up.</p>
+                                </div>
+                            </li>
+                            <li class="splide__slide relative mb-4">
+                                <img src="resources/story01-ending.png" alt="Grandmother Jalila's happy reaction" class="w-full rounded-2xl shadow-lg">
+                                <div class="absolute bottom-0 left-0 right-0 p-6 bg-black bg-opacity-40 rounded-b-2xl">
+                                    <p class="text-white text-lg md:text-xl leading-relaxed">When Grandma Jalila saw the clean room, she smiled and hugged Emna. She said, 'You have such a kind heart, my dear.' Emna felt <span class="vocabulary-word" title="feeling happy about what you did">proud</span> and happy to help someone she loved.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vocabulary Section -->
+        <div class="story-content rounded-3xl p-6 mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-book text-blue-500 mr-2"></i>
+                New Words to Learn
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-yellow-50 rounded-xl p-4 border-l-4 border-yellow-400">
+                    <h4 class="font-bold text-gray-800">noticed</h4>
+                    <p class="text-sm text-gray-600">saw or realized something</p>
+                </div>
+                <div class="bg-yellow-50 rounded-xl p-4 border-l-4 border-yellow-400">
+                    <h4 class="font-bold text-gray-800">messy</h4>
+                    <p class="text-sm text-gray-600">not clean or tidy</p>
+                </div>
+                <div class="bg-yellow-50 rounded-xl p-4 border-l-4 border-yellow-400">
+                    <h4 class="font-bold text-gray-800">proud</h4>
+                    <p class="text-sm text-gray-600">feeling happy about what you did</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Questions Section -->
+        <div class="question-card rounded-3xl p-6 mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-question-circle text-green-500 mr-2"></i>
+                Think and Answer
+            </h3>
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">1</span>
+                    <p class="text-gray-700">Where did Emna spend her weekends?</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">2</span>
+                    <p class="text-gray-700">Why was Grandma Jalila tired?</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">3</span>
+                    <p class="text-gray-700">What did Emna do to help her grandmother?</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">4</span>
+                    <p class="text-gray-700">How did Grandma Jalila feel when she saw the clean room?</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">5</span>
+                    <p class="text-gray-700">What is the most important lesson from this story?</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="flex justify-between items-center">
+            <button onclick="window.location.href='contents.html'" 
+                    class="nav-button text-white px-6 py-3 rounded-full font-semibold shadow-lg">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Contents
+            </button>
+            
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 bg-pink-400 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+            </div>
+            
+            <button onclick="window.location.href='story02.html'" 
+                    class="nav-button text-white px-6 py-3 rounded-full font-semibold shadow-lg">
+                Next Story
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Splide carousel
+        new Splide('#story-images', {
+            type: 'loop',
+            autoplay: true,
+            interval: 5000,
+            pauseOnHover: true,
+            arrows: true,
+            pagination: true,
+        }).mount();
+
+        // Animate story content on load
+        anime({
+            targets: '.story-content',
+            translateY: [50, 0],
+            opacity: [0, 1],
+            duration: 800,
+            delay: anime.stagger(200),
+            easing: 'easeOutExpo'
+        });
+
+        // Animate vocabulary words
+        anime({
+            targets: '.vocabulary-word',
+            scale: [0.8, 1],
+            opacity: [0, 1],
+            duration: 600,
+            delay: anime.stagger(100, {start: 1000}),
+            easing: 'easeOutElastic(1, .8)'
+        });
+
+        // Add hover effects for vocabulary words
+        document.querySelectorAll('.vocabulary-word').forEach(word => {
+            word.addEventListener('mouseenter', function() {
+                anime({
+                    targets: this,
+                    scale: 1.1,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+            
+            word.addEventListener('mouseleave', function() {
+                anime({
+                    targets: this,
+                    scale: 1,
+                    duration: 200,
+                    easing: 'easeOutQuad'
+                });
+            });
+        });
+    </script>
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.parent.postMessage('go-next', '*');
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.parent.postMessage('go-prev', '*');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* Print styles for Better Communication Stories */
+/* These styles ensure pages look like real book pages when printed */
+
+@media print {
+    body {
+        background: white !important;
+        font-size: 12pt;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        color: black !important;
+    }
+    
+    .container {
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .story-content,
+    .book-card {
+        background: white !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        page-break-inside: avoid;
+        margin: 0 !important;
+        padding: 20pt !important;
+        border-radius: 0 !important;
+    }
+    
+    .story-text {
+        font-size: 12pt !important;
+        line-height: 1.6 !important;
+        color: black !important;
+    }
+    
+    .story-title {
+        font-size: 18pt !important;
+        color: black !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        -webkit-text-fill-color: initial !important;
+        text-align: center;
+        margin-bottom: 20pt;
+        page-break-after: avoid;
+    }
+    
+    .vocabulary-word {
+        background: #FFF176 !important;
+        color: black !important;
+        border: 1px solid #333;
+        padding: 2pt 4pt !important;
+        border-radius: 3pt !important;
+    }
+    
+    .nav-button,
+    .progress-bar,
+    .splide__arrows,
+    .splide__pagination,
+    .page-number,
+    .back-button,
+    .splide__track {
+        display: none !important;
+    }
+    
+    .story-content img {
+        max-width: 100%;
+        height: auto;
+        page-break-inside: avoid;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .question-card,
+    .vocabulary-section {
+        background: #f9f9f9 !important;
+        border-left: 3pt solid #ccc !important;
+        page-break-inside: avoid;
+        margin: 15pt 0 !important;
+        padding: 15pt !important;
+    }
+    
+    .theme-badge {
+        background: #e0e0e0 !important;
+        color: black !important;
+        border: 1pt solid #999 !important;
+        padding: 4pt 8pt !important;
+        font-size: 10pt !important;
+        page-break-after: avoid;
+    }
+    
+    /* Hide decorative elements in print */
+    .decorative-star,
+ .floating-element {
+        display: none !important;
+    }
+    
+    /* Ensure proper spacing */
+    .story-text p {
+        margin-bottom: 12pt !important;
+        text-align: justify;
+    }
+    
+    .question-card h3,
+    .vocabulary-section h3 {
+        font-size: 14pt !important;
+        margin-bottom: 10pt !important;
+        page-break-after: avoid;
+    }
+    
+    .question-card .space-y-3 > div {
+        margin-bottom: 8pt !important;
+    }
+    
+    /* Page break controls */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    /* Ensure vocabulary words are visible */
+    .vocabulary-word[title]:hover::after {
+        content: attr(title);
+        position: absolute;
+        background: #333;
+        color: white;
+        padding: 4pt 8pt;
+        border-radius: 3pt;
+        font-size: 10pt;
+        white-space: nowrap;
+        z-index: 1000;
+        top: -20pt;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    @page {
+        size: A4;
+        margin: 2cm;
+    }
+    
+    /* Add page numbers */
+    @page {
+        @bottom-center {
+            content: counter(page);
+            font-size: 10pt;
+            color: #666;
+        }
+    }
+}
